@@ -25,7 +25,7 @@ conda install -c bioconda bcftools=1.17
 conda search -c bioconda r
 conda install -c bioconda r-base=3.6.0
 conda install -c bioconda r-base=4.2.0
-conda install -c bioconda r-base=4.3.2
+conda install -c bioconda r-base=4.4
 
 conda search -c bioconda plink2
 conda install -c bioconda plink2=2.00a2.3
@@ -105,8 +105,11 @@ cp data/sumstats/HCM_stats_LAVA.txt  data/sumstats/hcm.sumstats.txt
 nano data/input.info.txt
 ##########################################
 phenotype	cases	controls	filename
-DCM	9365	946368	/home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/DCM_GWAS_37_exclMYBPC3reg.txt
-HCM	5900	68359	/home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/HCM_GWAS_37_exclMYBPC3reg.txt
+DCM     37083   37083   /home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/DCM_GWAS_37_exclMYBPC3reg.txt
+HCM     21708   21708   /home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/HCM_GWAS_37_exclMYBPC3reg.txt
+
+# DCM	9365	946368	/home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/DCM_GWAS_37_exclMYBPC3reg.txt
+# HCM	5900	68359	/home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/HCM_GWAS_37_exclMYBPC3reg.txt
 
 # 9,365 DCM cases and 946,368
 # 5,900 HCM cases, 68,359 controls
@@ -125,7 +128,6 @@ plink2 --bfile g1000_eur.maf01 \
 
 
 cd /home/dkramarenk/projects/LAVA/DCM_HCM
-
 
 
 

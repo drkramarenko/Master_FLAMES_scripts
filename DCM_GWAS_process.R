@@ -11,10 +11,24 @@ print(paste("Libraries loaded successfully at", Sys.time()))
 option_list <- list(
   make_option(c("-f", "--file"), type="character", default="data/raw/Garnier_Meder_Amsterdam_FinnGen_UKB_MGB__DCM__META1_chr1_22_MAF0.005.tsv", 
               help="Path to the input sumstats file", metavar="file"),
-  make_option(c("-o", "--output"), type="character", default="data/sumst_processed/DCM_stats_LAVA_37_exclMYBPC3reg.txt",
+  make_option(c("-o", "--output"), type="character", default="data/sumst_processed/DCM_GWAS_37_exclMYBPC3reg.txt",
               help="Path to the output file", metavar="file")
 )
+
+print("Command-line options set up")
+
+# Parse command-line arguments
+opt <- parse_args(OptionParser(option_list=option_list))
+print(paste("Input file:", opt$file))
+print(paste("Output file:", opt$output))
+
+# Read the TSV file
+print("Reading data from input file")
+dat1 <- fread(opt$file)
+dat1 <- fread("data/raw/Garnier_Meder_Amsterdam_FinnGen_UKB_MGB__DCM__META1_chr1_22_MAF0.005.tsv")
+
 print(paste("Data read successfully. Rows:", nrow(dat1), ", Columns:", ncol(dat1)))
+
 
 # Process the data: select and rename columns
 print("Reading data from input file")
@@ -25,12 +39,16 @@ dat$maf <- dat$EAFREQ
 
 dat[dat$EAFREQ > 0.5, 'maf'] <- 1 - dat[dat$EAFREQ > 0.5, 'maf']
 
+print(paste("EAFREQ > 0.5. Rows:", nrow(dat), ", Columns:", ncol(dat)))
+
 print("Calculating effective sample size (Neff)")
 dat$Neff <- 1 / (2 * dat$maf * (1 - dat$maf) * (dat$SE^2))
 
 print("Filtering out INDELs")
 dat <- dat[!dat$INDEL, ]
 print(paste("Data filtered by INDELs. Remaining Rows:", nrow(dat)))
+
+print(paste("Filtering out INDELs. Rows:", nrow(dat), ", Columns:", ncol(dat)))
 
 print("Filtering data based on sample size (N_cases)")
 dat <- dat[dat$N_cases >= 0.7 * max(dat$N_cases), ]

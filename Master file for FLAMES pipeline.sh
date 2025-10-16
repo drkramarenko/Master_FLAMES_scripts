@@ -9,6 +9,7 @@ conda activate LAVA_2024
 
 # set veribles. to remove -> unset
 export WD_PROJECT="/home/dkramarenk/projects/LAVA/DCM_HCM"
+
 cd ${WD_PROJECT}
 
 # /home/dkramarenk/projects/LAVA/DCM_HCM -> ${WD_PROJECT}
@@ -331,4 +332,10 @@ done
 
 # Shared transfer
 scp dkramarenk@snellius.surf.nl://gpfs/work2/0/brugada/sjurgens/DCM_HCM_shared_opposing/DCM__HCM__ccMTAG_rg1constrained_mtagandrandom_meta_QCfull_exclMYBPC3reg.txt.gz /Users/drkramarenko/Library/CloudStorage/OneDrive-Personal/Computation/GWAS/Project_SHARED_DCM_HCM/sumst_processed/
+
+cp /gpfs/work2/0/brugada/sjurgens/DCM_HCM_shared_opposing/DCM__HCM__ccMTAG_rg1constrained_mtagandrandom_meta_QCfull_exclMYBPC3reg.txt.gz /home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/shared_meta_analysis_DCM_HCM.txt.gz
+
+export WD_PROJECT="/home/dkramarenk/projects/LAVA/DCM_HCM"
+
+scp  dkramarenk@snellius.surf.nl:/${WD_PROJECT}/data/sumst_processed/shared_analysis_2025.tar.gz /Users/drkramarenko/Library/CloudStorage/OneDrive-Personal/Computation/GWAS/Project_SHARED_DCM_HCM/
 

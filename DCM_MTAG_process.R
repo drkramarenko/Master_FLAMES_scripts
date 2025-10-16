@@ -10,7 +10,7 @@ print("Libraries loaded successfully")
 
 # Set up command-line options
 option_list <- list(
-  make_option(c("-f", "--file"), type="character", default="data/DCM_MTAG_Ecc_global_LVESVi_processed.tsv", 
+  make_option(c("-f", "--file"), type="character", default="data/raw/DCM_MTAG_Ecc_global_LVESVi_processed.tsv", 
               help="Path to the input sumstats file", metavar="file"),
   make_option(c("-o", "--output"), type="character", default="data/sumst_processed/DCM_MTAG_sumst_37_exclMYBPC3reg.txt",
               help="Path to the output file", metavar="file")
@@ -39,6 +39,8 @@ dat$maf <- dat$EAFREQ
 print("Calculating minor allele frequency (maf)")
 dat[dat$EAFREQ > 0.5, 'maf'] <- 1 - dat[dat$EAFREQ > 0.5, 'maf']
 
+print(paste("EAFREQ > 0.5. Rows:", nrow(dat), ", Columns:", ncol(dat)))
+
 # Calculating Neff
 print("Calculating Neff")
 dat$Neff <- 1/(2 * dat$maf * (1 - dat$maf) * (dat$SE^2))
@@ -51,6 +53,7 @@ print(paste("Data filtered by Neff. Remaining Rows:", nrow(dat)))
 # Additional filtering based on EAFREQ
 print("Filtering data based on EAFREQ")
 dat2 <- dat[dat$EAFREQ >= 0.005 & dat$EAFREQ <= 0.995, ]
+print(paste("dat$EAFREQ >= 0.005 & dat$EAFREQ <= 0.995. Rows:", nrow(dat), ", Columns:", ncol(dat)))
 
 # Calculating Z-scores
 print("Calculating Z-scores")
