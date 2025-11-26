@@ -1,0 +1,3 @@
+phenotype   cases   controls    filename
+DCM         37083   37083       /home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/DCM_GWAS_37_exclMYBPC3reg.txt
+HCM         21708   21708       /home/dkramarenk/projects/LAVA/DCM_HCM/data/sumst_processed/HCM_GWAS_37_exclMYBPC3reg.txt
